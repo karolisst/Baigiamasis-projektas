@@ -5,7 +5,7 @@ export const Nav = styled.nav`
   background: #005073;
   height: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 `;
 
 export const NavLink = styled(Link)`
@@ -20,13 +20,7 @@ export const NavLink = styled(Link)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
-`;
-
-export const NavBtn = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-right: 24px;
+  margin-right: 5%;
 `;
 
 export const NavBtnLink = styled(Link)`
