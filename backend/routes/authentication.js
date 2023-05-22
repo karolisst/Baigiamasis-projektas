@@ -10,13 +10,13 @@ const router = express.Router();
 
 router.post("/register", (req, res) => {
   const { body } = req;
-  const { name, email, surname, password } = body;
+  const { email, name, surname, password } = body;
 
   const hashedPassword = bcrypt.hashSync(password, 12);
 
   dbConnection.execute(
     "INSERT INTO administrators (email, name, surname, password) VALUES (?, ?, ?, ?)",
-    [name, email, surname, hashedPassword],
+    [email, name, surname, hashedPassword],
     (err, result) => defaultCallback(err, result, res)
   );
 });

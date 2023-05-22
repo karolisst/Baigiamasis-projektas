@@ -1,8 +1,13 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Register } from "./components/Register";
 
 function App() {
-  return <div>Home Page</div>;
+  return (
+    <div>
+      {" "}
+      <Register />
+    </div>
+  );
 }
 
 export default App;
