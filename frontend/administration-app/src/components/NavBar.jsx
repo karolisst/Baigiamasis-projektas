@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import React from "react";
-import { Nav, NavLink, NavMenu, NavBtnLink } from "../styles/StyledNavBar";
+import { Nav, NavLink, NavMenu, NavBtnLink, Img } from "../styles/StyledNavBar";
 import { AuthenticationContext } from "./AuthenticationContext";
+import logo from "../assets/logo.svg";
 
 export const NavBar = ({ isLoading, onLogout }) => {
   const { isSignedIn } = useContext(AuthenticationContext);
@@ -15,7 +16,7 @@ export const NavBar = ({ isLoading, onLogout }) => {
       {isSignedIn ? (
         <>
           <NavLink to="/">
-            {/* <img src={require("../../images/logo.svg")} alt="logo" /> */}
+            <Img src={logo} alt="logo" />
           </NavLink>
           <NavMenu>
             <NavLink to="/">Home</NavLink>
@@ -27,13 +28,15 @@ export const NavBar = ({ isLoading, onLogout }) => {
           </NavMenu>
         </>
       ) : (
-        <NavMenu>
+        <>
           <NavLink to="/">
-            {/* <img src={require("../../images/logo.svg")} alt="logo" /> */}
+            <Img src={logo} alt="logo" />
           </NavLink>
-          <NavLink to="/register">Register</NavLink>
-          <NavBtnLink to="/login">Login</NavBtnLink>
-        </NavMenu>
+          <NavMenu>
+            <NavLink to="/register">Register</NavLink>
+            <NavBtnLink to="/login">Login</NavBtnLink>
+          </NavMenu>
+        </>
       )}
     </Nav>
   );

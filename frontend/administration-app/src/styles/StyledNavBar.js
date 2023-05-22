@@ -2,10 +2,20 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Nav = styled.nav`
-  background: #005073;
+  background: rgb(36, 36, 36);
+  background: linear-gradient(
+    135deg,
+    rgba(36, 36, 36, 1) 19%,
+    rgba(83, 83, 83, 1) 86%
+  );
   height: 80px;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  padding: 0 5%;
+`;
+
+export const Img = styled.img`
+  width: 200px;
 `;
 
 export const NavLink = styled(Link)`
@@ -20,14 +30,14 @@ export const NavLink = styled(Link)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 5%;
+  justify-content: flex-end;
 `;
 
 export const NavBtnLink = styled(Link)`
   border-radius: 20px;
-  background: #189ad3;
-  padding: 10px 22px;
-  color: #fff;
+  background: #7fc67e;
+  padding: 10px 25px;
+  color: #333333;
   outline: none;
   border: none;
   text-decoration: none;

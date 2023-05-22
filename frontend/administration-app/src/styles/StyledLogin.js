@@ -14,17 +14,17 @@ export const StyledInput = styled.input`
   padding: 10px 8px;
   border: 0;
   border-radius: 100px;
-  background-color: #71c7ec;
+  background-color: #eeeeee;
 `;
 
 export const StyledButton = styled.button`
-  width: 50%;
-  margin: 5px 0px;
-  background-color: #005073;
+  width: 30%;
+  margin: 20px 0 5px 0;
+  background-color: #7fc67e;
   padding: 10px;
   border: 0;
   border-radius: 100px;
-  color: white;
+  color: #333333;
 `;
 
 export const StyledForm = styled.form`
@@ -33,7 +33,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #189ad3;
+  background-color: #333333;
   padding: 20px;
   border-radius: 0px 0px 7.5px 7.5px;
 `;
@@ -43,7 +43,7 @@ export const StyledHeader = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #005073;
+  background-color: #1b1b1b;
   padding: 5px 20px;
   width: 100%;
   border-radius: 7.5px 7.5px 0px 0px;
