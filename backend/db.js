@@ -36,6 +36,22 @@ dbConnection.query(
         if (err) throw err;
         console.log("administrators table created");
       });
+
+      const usersTableQuery = `
+      CREATE TABLE IF NOT EXISTS users (
+        id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL,
+        surname VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        phone_number VARCHAR(100) NOT NULL,
+        primary key (id)
+      )
+      `;
+
+      dbConnection.query(usersTableQuery, (err) => {
+        if (err) throw err;
+        console.log("users table created");
+      });
     });
   }
 );
