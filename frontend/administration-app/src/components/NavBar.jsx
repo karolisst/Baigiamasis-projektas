@@ -20,10 +20,8 @@ export const NavBar = ({ isLoading, onLogout }) => {
           </NavLink>
           <NavMenu>
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/newparticipant">New event participants</NavLink>
-            <NavLink to="/registeredparticipant">
-              Registered participant
-            </NavLink>
+            <NavLink to="/newuser">New event participants</NavLink>
+            <NavLink to="/registeredusers">Registered participants</NavLink>
             {isSignedIn && <NavBtnLink onClick={onLogout}>Logout</NavBtnLink>}
           </NavMenu>
         </>
