@@ -31,7 +31,7 @@ export const ThElement = styled.th`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  color: white;
+  color: #7fc67e;
   font-size: 18px;
   font-weight: bold;
 `;
@@ -41,9 +41,9 @@ export const TdElement = styled.td`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding: 5px 0;
   color: white;
   font-size: 16px;
+  padding: 5px 0;
 `;
 
 export const ThLastElement = styled.th`
@@ -52,6 +52,7 @@ export const ThLastElement = styled.th`
 
 export const TdLastElement = styled.td`
   width: 20%;
+  padding: 5px 0;
 `;
 
 export const ThFirstElement = styled.th`
@@ -59,9 +60,8 @@ export const ThFirstElement = styled.th`
   flex-direction: row;
   justify-content: space-between;
   width: 40%;
-  padding: 5px 0;
-  color: white;
-  font-size: 16px;
+  color: #7fc67e;
+  font-size: 18px;
 `;
 
 export const TdFirstElement = styled.td`
