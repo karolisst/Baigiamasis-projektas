@@ -35,7 +35,7 @@ export const StyledForm = styled.form`
   width: 100%;
   background-color: #333333;
   padding: 20px;
-  border-radius: 0px 0px 7.5px 7.5px;
+  border-radius: 0px 0px 30px 30px;
 `;
 
 export const StyledHeader = styled.div`
@@ -46,7 +46,7 @@ export const StyledHeader = styled.div`
   background-color: #1b1b1b;
   padding: 5px 20px;
   width: 100%;
-  border-radius: 7.5px 7.5px 0px 0px;
+  border-radius: 30px 30px 0px 0px;
   color: white;
 `;
 

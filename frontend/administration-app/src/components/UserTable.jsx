@@ -1,5 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  BodyWrapper,
+  DeleteButton,
+  HeaderWrapper,
+  Img,
+  TableContainer,
+  TdElement,
+  TdFirstElement,
+  TdLastElement,
+  ThElement,
+  ThFirstElement,
+  ThLastElement,
+  TrElement,
+} from "../styles/StyledUsersTable";
+import logo from "../assets/trash.svg";
 
 export const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -40,30 +55,33 @@ export const UserTable = () => {
   }, [deleteUser]);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Surname</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-        </tr>
-      </thead>
-      <tbody>
+    <TableContainer>
+      <HeaderWrapper>
+        <TrElement>
+          <ThFirstElement>ID</ThFirstElement>
+          <ThElement>Name</ThElement>
+          <ThElement>Surname</ThElement>
+          <ThElement>Email</ThElement>
+          <ThElement>Phone Number</ThElement>
+          <ThLastElement></ThLastElement>
+        </TrElement>
+      </HeaderWrapper>
+      <BodyWrapper>
         {users.map((user) => (
-          <tr key={user.id}>
-            <td>{user.id}</td>
-            <td>{user.name}</td>
-            <td>{user.surname}</td>
-            <td>{user.email}</td>
-            <td>{user.phone_number}</td>
-            <td>
-              <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
-            </td>
-          </tr>
+          <TrElement key={user.id}>
+            <TdFirstElement>{user.id}</TdFirstElement>
+            <TdElement>{user.name}</TdElement>
+            <TdElement>{user.surname}</TdElement>
+            <TdElement>{user.email}</TdElement>
+            <TdElement>{user.phone_number}</TdElement>
+            <TdLastElement>
+              <DeleteButton onClick={() => handleDeleteUser(user.id)}>
+                <Img src={logo} alt="logo" />
+              </DeleteButton>
+            </TdLastElement>
+          </TrElement>
         ))}
-      </tbody>
-    </table>
+      </BodyWrapper>
+    </TableContainer>
   );
 };

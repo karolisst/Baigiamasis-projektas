@@ -1,10 +1,11 @@
+import { H1Element, UsersSection } from "../styles/StyledUsersTable";
 import { UserTable } from "./UserTable";
 
 export const UserList = () => {
   return (
-    <div>
-      <h2>Users</h2>
+    <UsersSection>
+      <H1Element>Registered event participants</H1Element>
       <UserTable />
-    </div>
+    </UsersSection>
   );
 };
