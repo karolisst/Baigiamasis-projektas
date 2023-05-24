@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const TableContainer = styled.table`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 70%;
 `;
 
 export const HeaderWrapper = styled.thead`
@@ -100,7 +100,6 @@ export const H1Element = styled.h1`
 `;
 
 export const NewUserButton = styled(Link)`
-  margin-bottom: 10px;
   padding: 15px 70px;
   font-size: 18px;
   border: none;

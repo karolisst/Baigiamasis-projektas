@@ -1,3 +1,24 @@
+import { AllUserButton } from "../styles/StyledNewUser";
+import { NewUserButton } from "../styles/StyledUsersTable";
+import {
+  ButtonContainer,
+  HomeContainer,
+  H1Element,
+} from "../styles/StyledHome";
+import { UserList } from "./UserList";
+
 export const HomePage = () => {
-  return <h1>HomePage</h1>;
+  return (
+    <>
+      <HomeContainer>
+        <H1Element>Choose which actions you want to perform</H1Element>
+        <ButtonContainer>
+          <NewUserButton to="/newuser">Add new event participant</NewUserButton>
+          <AllUserButton to="/registeredusers">
+            View all registered participants
+          </AllUserButton>
+        </ButtonContainer>
+      </HomeContainer>
+    </>
+  );
 };

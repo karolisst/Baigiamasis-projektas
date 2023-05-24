@@ -36,15 +36,20 @@ export const UserTable = () => {
   };
 
   const handleDeleteUser = (userId) => {
-    axios
-      .delete(`http://localhost:8000/users/${userId}`)
-      .then((response) => {
-        console.log(response.data);
-        setDeleteUser(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (confirmed) {
+      axios
+        .delete(`http://localhost:8000/users/${userId}`)
+        .then((response) => {
+          console.log(response.data);
+          setDeleteUser(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   useEffect(() => {
