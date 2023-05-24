@@ -26,7 +26,7 @@ const Protected = ({ isLoading, setIsLoading }) => {
   }, []);
 
   if (isLoading) {
-    return;
+    return <Navigate to="/login" />;
   }
 
   if (!isSignedIn) {

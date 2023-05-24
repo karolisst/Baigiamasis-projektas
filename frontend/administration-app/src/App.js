@@ -8,6 +8,7 @@ import { NavBar } from "./components/NavBar";
 import Protected from "./components/Protected";
 import { HomePage } from "./components/HomePage";
 import { UserList } from "./components/UserList";
+import { NewUser } from "./components/NewUser";
 
 function App() {
   const { setIsSignedIn } = useContext(AuthenticationContext);
@@ -31,6 +32,7 @@ function App() {
         >
           <Route path="/" element={<HomePage />} />
           <Route path="/registeredusers" element={<UserList />} />
+          <Route path="/newuser" element={<NewUser />} />
         </Route>
       </Routes>
     </>
