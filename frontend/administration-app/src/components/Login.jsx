@@ -7,11 +7,13 @@ import {
   StyledButton,
   StyledForm,
   Error,
+  Img,
 } from "../styles/StyledLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthenticationContext } from "./AuthenticationContext";
+import logo from "../assets/error.svg";
 
 export const Login = () => {
   const { setIsSignedIn } = useContext(AuthenticationContext);
@@ -70,8 +72,12 @@ export const Login = () => {
               placeholder="*********"
             />
             <StyledButton className="btn">LOGIN</StyledButton>
-
-            {error && <Error>{error}</Error>}
+            {error && (
+              <Error>
+                <Img src={logo} alt="logo" />
+                {error}
+              </Error>
+            )}
           </StyledForm>
         </MainBox>
       </LoginContainer>

@@ -25,6 +25,7 @@ export const StyledButton = styled.button`
   border: 0;
   border-radius: 100px;
   color: #333333;
+  cursor: pointer;
 `;
 
 export const StyledForm = styled.form`
@@ -55,10 +56,18 @@ export const MainBox = styled.div`
 `;
 
 export const Error = styled.div`
-  background-color: #f09292;
-  border: 1px solid red;
-  border-radius: 6px;
-  color: red;
-  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  background-color: #ffc8c8;
+  border: 2px solid #e23636;
+  border-radius: 50px;
+  color: #e23636;
+  padding: 5px 30px;
   text-align: center;
+`;
+
+export const Img = styled.img`
+  width: 20px;
 `;

@@ -5,27 +5,37 @@ import {
   StyledInput,
   StyledButton,
   StyledForm,
+  Error,
+  Img,
 } from "../styles/StyledLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import logo from "../assets/error.svg";
 
 export const Register = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
-  });
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    // POST request i "http://localhost:5000........"
+
+    if (!name || !surname || !email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    const formData = {
+      name: name,
+      surname: surname,
+      email: email,
+      password: password,
+    };
+
     axios
       .post("http://localhost:8000/register", formData)
       .then((response) => {
@@ -34,15 +44,20 @@ export const Register = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleOnChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const onNameChange = (e) => {
     setName(e.target.value);
+  };
+
+  const onSurnameChange = (e) => {
+    setSurname(e.target.value);
+  };
+
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
   return (
@@ -58,27 +73,39 @@ export const Register = () => {
             name="name"
             type="text"
             placeholder="Name"
-            onChange={handleOnChange}
+            value={name}
+            onChange={onNameChange}
           />
           <StyledInput
             name="surname"
             type="text"
             placeholder="Surname"
-            onChange={handleOnChange}
+            value={surname}
+            onChange={onSurnameChange}
           />
           <StyledInput
             name="email"
             type="email"
             placeholder="youremail@gmail.com"
-            onChange={handleOnChange}
+            value={email}
+            onChange={onEmailChange}
           />
           <StyledInput
             name="password"
             type="password"
             placeholder="*********"
-            onChange={handleOnChange}
+            value={password}
+            onChange={onPasswordChange}
           />
-          <StyledButton className="btn">Register</StyledButton>
+          <StyledButton className="btn" type="submit">
+            Register
+          </StyledButton>
+          {error && (
+            <Error>
+              <Img src={logo} alt="logo" />
+              {error}
+            </Error>
+          )}
         </StyledForm>
       </MainBox>
     </LoginContainer>
