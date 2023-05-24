@@ -1,9 +1,10 @@
+import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const TableContainer = styled.table`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 80%;
 `;
 
 export const HeaderWrapper = styled.thead`
@@ -96,4 +97,16 @@ export const UsersSection = styled.div`
 export const H1Element = styled.h1`
   color: #7fc67e;
   margin-bottom: 30px;
+`;
+
+export const NewUserButton = styled(Link)`
+  margin-bottom: 10px;
+  padding: 15px 70px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  background-color: #333333;
+  color: #7fc67e;
+  cursor: pointer;
+  text-decoration: none;
 `;

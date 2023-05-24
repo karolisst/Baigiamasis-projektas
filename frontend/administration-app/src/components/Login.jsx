@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthenticationContext } from "./AuthenticationContext";
-import logo from "../assets/error.svg";
+import errorImg from "../assets/error.svg";
 
 export const Login = () => {
   const { setIsSignedIn } = useContext(AuthenticationContext);
@@ -63,7 +63,7 @@ export const Login = () => {
               name="email"
               onChange={handleOnChange}
               type="email"
-              placeholder="youremail@gmail.com"
+              placeholder="Email"
             />
             <StyledInput
               name="password"
@@ -71,10 +71,10 @@ export const Login = () => {
               type="password"
               placeholder="*********"
             />
-            <StyledButton className="btn">LOGIN</StyledButton>
+            <StyledButton className="btn">Login</StyledButton>
             {error && (
               <Error>
-                <Img src={logo} alt="logo" />
+                <Img src={errorImg} alt="logo" />
                 {error}
               </Error>
             )}

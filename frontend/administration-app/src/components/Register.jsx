@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import logo from "../assets/error.svg";
+import errorImg from "../assets/error.svg";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -86,7 +86,7 @@ export const Register = () => {
           <StyledInput
             name="email"
             type="email"
-            placeholder="youremail@gmail.com"
+            placeholder="Email"
             value={email}
             onChange={onEmailChange}
           />
@@ -102,7 +102,7 @@ export const Register = () => {
           </StyledButton>
           {error && (
             <Error>
-              <Img src={logo} alt="logo" />
+              <Img src={errorImg} alt="logo" />
               {error}
             </Error>
           )}
