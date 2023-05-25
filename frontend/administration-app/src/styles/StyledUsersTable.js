@@ -78,7 +78,7 @@ export const TdFirstElement = styled.td`
   font-size: 16px;
 `;
 
-export const DeleteButton = styled.div`
+export const ButtonSection = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -111,4 +111,11 @@ export const NewUserButton = styled(Link)`
   color: #7fc67e;
   cursor: pointer;
   text-decoration: none;
+`;
+
+export const InputElement = styled.input`
+  padding: 0 8px;
+  border: 0;
+  border-radius: 100px;
+  background-color: #eeeeee;
 `;

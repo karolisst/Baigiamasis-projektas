@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import {
   BodyWrapper,
-  DeleteButton,
+  ButtonSection,
   HeaderWrapper,
   Img,
+  InputElement,
   TableContainer,
   TdElement,
   TdFirstElement,
@@ -16,6 +17,8 @@ import {
 } from "../styles/StyledUsersTable";
 import trash from "../assets/trash.svg";
 import edit from "../assets/edit.svg";
+import save from "../assets/save.svg";
+import cancel from "../assets/cancel.svg";
 
 export const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -125,36 +128,40 @@ export const UserTable = () => {
               <>
                 <TdFirstElement>{user.id}</TdFirstElement>
                 <TdElement>
-                  <input
+                  <InputElement
                     type="text"
                     value={editedName}
                     onChange={(e) => setEditedName(e.target.value)}
                   />
                 </TdElement>
                 <TdElement>
-                  <input
+                  <InputElement
                     type="text"
                     value={editedSurname}
                     onChange={(e) => setEditedSurname(e.target.value)}
                   />
                 </TdElement>
                 <TdElement>
-                  <input
+                  <InputElement
                     type="text"
                     value={editedEmail}
                     onChange={(e) => setEditedEmail(e.target.value)}
                   />
                 </TdElement>
                 <TdElement>
-                  <input
+                  <InputElement
                     type="text"
                     value={editedPhoneNumber}
                     onChange={(e) => setEditedPhoneNumber(e.target.value)}
                   />
                 </TdElement>
                 <TdLastElement>
-                  <button onClick={handleSaveChanges}>Save</button>
-                  <button onClick={handleCancelEdit}>Cancel</button>
+                  <ButtonSection onClick={handleSaveChanges}>
+                    <Img src={save} alt="logo" />
+                  </ButtonSection>
+                  <ButtonSection onClick={handleCancelEdit}>
+                    <Img src={cancel} alt="logo" />
+                  </ButtonSection>
                 </TdLastElement>
               </>
             ) : (
@@ -165,12 +172,12 @@ export const UserTable = () => {
                 <TdElement>{user.email}</TdElement>
                 <TdElement>{user.phone_number}</TdElement>
                 <TdLastElement>
-                  <DeleteButton onClick={() => handleEditUser(user)}>
+                  <ButtonSection onClick={() => handleEditUser(user)}>
                     <Img src={edit} alt="logo" />
-                  </DeleteButton>
-                  <DeleteButton onClick={() => handleDeleteUser(user.id)}>
+                  </ButtonSection>
+                  <ButtonSection onClick={() => handleDeleteUser(user.id)}>
                     <Img src={trash} alt="logo" />
-                  </DeleteButton>
+                  </ButtonSection>
                 </TdLastElement>
               </>
             )}
