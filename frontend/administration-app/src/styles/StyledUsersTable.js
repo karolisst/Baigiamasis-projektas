@@ -52,6 +52,9 @@ export const ThLastElement = styled.th`
 `;
 
 export const TdLastElement = styled.td`
+  display: flex;
+  align-items: center;
+  gap: 5px;
   width: 20%;
   padding: 5px 0;
 `;

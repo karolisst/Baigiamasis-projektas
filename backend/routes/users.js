@@ -31,4 +31,15 @@ router.delete("/users/:id", (req, res) => {
   );
 });
 
+router.put("/users/:id", (req, res) => {
+  const { body } = req;
+  const { id } = req.params;
+
+  dbConnection.execute(
+    "UPDATE users SET name=?, surname=?, email=?, phone_number=? WHERE id=?",
+    [body.name, body.surname, body.email, body.phone_number, id],
+    (err, result) => defaultCallback(err, result, res)
+  );
+});
+
 module.exports = router;
