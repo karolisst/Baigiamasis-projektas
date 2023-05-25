@@ -1,4 +1,3 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "./components/AuthenticationContext";
@@ -9,6 +8,7 @@ import Protected from "./components/Protected";
 import { HomePage } from "./components/HomePage";
 import { UserList } from "./components/UserList";
 import { NewUser } from "./components/NewUser";
+import { StyledMainSection } from "./styles/StyledApp";
 
 function App() {
   const { setIsSignedIn } = useContext(AuthenticationContext);
@@ -20,7 +20,7 @@ function App() {
   };
 
   return (
-    <>
+    <StyledMainSection>
       <NavBar onLogout={handleLogout} />
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -35,7 +35,7 @@ function App() {
           <Route path="/newuser" element={<NewUser />} />
         </Route>
       </Routes>
-    </>
+    </StyledMainSection>
   );
 }
 

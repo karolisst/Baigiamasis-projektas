@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   BodyWrapper,
   ButtonSection,
@@ -28,6 +30,7 @@ export const UserTable = () => {
   const [editedSurname, setEditedSurname] = useState("");
   const [editedEmail, setEditedEmail] = useState("");
   const [editedPhoneNumber, setEditedPhoneNumber] = useState("");
+  const [existingUserError, setExistingUserError] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -51,9 +54,18 @@ export const UserTable = () => {
     if (confirmed) {
       axios
         .delete(`http://localhost:8000/users/${userId}`)
-        .then((response) => {
-          console.log(response.data);
+        .then(() => {
           setDeleteUser(true);
+          toast.info("user deleted successfully", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -70,6 +82,12 @@ export const UserTable = () => {
   };
 
   const handleSaveChanges = () => {
+    const existingUser = users.find((user) => user.email === editedEmail);
+    if (existingUser && existingUser.id !== editingUserId) {
+      setExistingUserError(true);
+      return;
+    }
+
     const updatedUser = {
       id: editingUserId,
       name: editedName,
@@ -80,14 +98,23 @@ export const UserTable = () => {
 
     axios
       .put(`http://localhost:8000/users/${editingUserId}`, updatedUser)
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
         setEditingUserId(null);
         setEditedName("");
         setEditedSurname("");
         setEditedEmail("");
         setEditedPhoneNumber("");
         fetchUsers();
+        toast.success("User successfully edited", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -109,81 +136,100 @@ export const UserTable = () => {
     }
   }, [deleteUser]);
 
+  useEffect(() => {
+    if (existingUserError) {
+      toast.error("User with this email already exists", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setExistingUserError(false);
+    }
+  }, [existingUserError]);
+
   return (
-    <TableContainer>
-      <HeaderWrapper>
-        <TrElement>
-          <ThFirstElement>ID</ThFirstElement>
-          <ThElement>Name</ThElement>
-          <ThElement>Surname</ThElement>
-          <ThElement>Email</ThElement>
-          <ThElement>Phone Number</ThElement>
-          <ThLastElement></ThLastElement>
-        </TrElement>
-      </HeaderWrapper>
-      <BodyWrapper>
-        {users.map((user) => (
-          <TrElement key={user.id}>
-            {editingUserId === user.id ? (
-              <>
-                <TdFirstElement>{user.id}</TdFirstElement>
-                <TdElement>
-                  <InputElement
-                    type="text"
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                  />
-                </TdElement>
-                <TdElement>
-                  <InputElement
-                    type="text"
-                    value={editedSurname}
-                    onChange={(e) => setEditedSurname(e.target.value)}
-                  />
-                </TdElement>
-                <TdElement>
-                  <InputElement
-                    type="text"
-                    value={editedEmail}
-                    onChange={(e) => setEditedEmail(e.target.value)}
-                  />
-                </TdElement>
-                <TdElement>
-                  <InputElement
-                    type="text"
-                    value={editedPhoneNumber}
-                    onChange={(e) => setEditedPhoneNumber(e.target.value)}
-                  />
-                </TdElement>
-                <TdLastElement>
-                  <ButtonSection onClick={handleSaveChanges}>
-                    <Img src={save} alt="logo" />
-                  </ButtonSection>
-                  <ButtonSection onClick={handleCancelEdit}>
-                    <Img src={cancel} alt="logo" />
-                  </ButtonSection>
-                </TdLastElement>
-              </>
-            ) : (
-              <>
-                <TdFirstElement>{user.id}</TdFirstElement>
-                <TdElement>{user.name}</TdElement>
-                <TdElement>{user.surname}</TdElement>
-                <TdElement>{user.email}</TdElement>
-                <TdElement>{user.phone_number}</TdElement>
-                <TdLastElement>
-                  <ButtonSection onClick={() => handleEditUser(user)}>
-                    <Img src={edit} alt="logo" />
-                  </ButtonSection>
-                  <ButtonSection onClick={() => handleDeleteUser(user.id)}>
-                    <Img src={trash} alt="logo" />
-                  </ButtonSection>
-                </TdLastElement>
-              </>
-            )}
+    <>
+      <ToastContainer />
+      <TableContainer>
+        <HeaderWrapper>
+          <TrElement>
+            <ThFirstElement>ID</ThFirstElement>
+            <ThElement>Name</ThElement>
+            <ThElement>Surname</ThElement>
+            <ThElement>Email</ThElement>
+            <ThElement>Phone Number</ThElement>
+            <ThLastElement></ThLastElement>
           </TrElement>
-        ))}
-      </BodyWrapper>
-    </TableContainer>
+        </HeaderWrapper>
+        <BodyWrapper>
+          {users.map((user) => (
+            <TrElement key={user.id}>
+              {editingUserId === user.id ? (
+                <>
+                  <TdFirstElement>{user.id}</TdFirstElement>
+                  <TdElement>
+                    <InputElement
+                      type="text"
+                      value={editedName}
+                      onChange={(e) => setEditedName(e.target.value)}
+                    />
+                  </TdElement>
+                  <TdElement>
+                    <InputElement
+                      type="text"
+                      value={editedSurname}
+                      onChange={(e) => setEditedSurname(e.target.value)}
+                    />
+                  </TdElement>
+                  <TdElement>
+                    <InputElement
+                      type="text"
+                      value={editedEmail}
+                      onChange={(e) => setEditedEmail(e.target.value)}
+                    />
+                  </TdElement>
+                  <TdElement>
+                    <InputElement
+                      type="text"
+                      value={editedPhoneNumber}
+                      onChange={(e) => setEditedPhoneNumber(e.target.value)}
+                    />
+                  </TdElement>
+                  <TdLastElement>
+                    <ButtonSection onClick={handleSaveChanges}>
+                      <Img src={save} alt="logo" />
+                    </ButtonSection>
+                    <ButtonSection onClick={handleCancelEdit}>
+                      <Img src={cancel} alt="logo" />
+                    </ButtonSection>
+                  </TdLastElement>
+                </>
+              ) : (
+                <>
+                  <TdFirstElement>{user.id}</TdFirstElement>
+                  <TdElement>{user.name}</TdElement>
+                  <TdElement>{user.surname}</TdElement>
+                  <TdElement>{user.email}</TdElement>
+                  <TdElement>{user.phone_number}</TdElement>
+                  <TdLastElement>
+                    <ButtonSection onClick={() => handleEditUser(user)}>
+                      <Img src={edit} alt="logo" />
+                    </ButtonSection>
+                    <ButtonSection onClick={() => handleDeleteUser(user.id)}>
+                      <Img src={trash} alt="logo" />
+                    </ButtonSection>
+                  </TdLastElement>
+                </>
+              )}
+            </TrElement>
+          ))}
+        </BodyWrapper>
+      </TableContainer>
+    </>
   );
 };

@@ -45,7 +45,6 @@ export const NewUser = () => {
       return;
     }
 
-    // Check if email already exists
     axios
       .get(`http://localhost:8000/check-user-email/${form.email}`)
       .then((response) => {
@@ -55,8 +54,7 @@ export const NewUser = () => {
         } else {
           axios
             .post("http://localhost:8000/users", form)
-            .then((res) => {
-              console.log(res);
+            .then(() => {
               setForm({
                 name: "",
                 surname: "",
@@ -84,18 +82,7 @@ export const NewUser = () => {
 
   return (
     <AddUserContainer>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <ToastContainer />
       <MainBox>
         <StyledHeader>
           <h2>
