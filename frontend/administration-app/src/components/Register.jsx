@@ -8,11 +8,13 @@ import {
   StyledForm,
   Error,
   Img,
+  StyledCreateAcc,
 } from "../styles/StyledLogin";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthenticationContext } from "./AuthenticationContext";
 import errorImg from "../assets/error.svg";
+import arrow from "../assets/arrow.svg";
 
 export const Register = () => {
   const { setIsSignedIn } = useContext(AuthenticationContext);
@@ -130,6 +132,10 @@ export const Register = () => {
               {error}
             </Error>
           )}
+          <StyledCreateAcc to="/login">
+            Already have an account?<strong>Login</strong>
+            <Img src={arrow} alt="logo" />
+          </StyledCreateAcc>
         </StyledForm>
       </MainBox>
     </LoginContainer>

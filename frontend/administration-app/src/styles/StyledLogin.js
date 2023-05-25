@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const LoginContainer = styled.div`
@@ -73,4 +74,13 @@ export const Error = styled.div`
 
 export const Img = styled.img`
   width: 20px;
+`;
+
+export const StyledCreateAcc = styled(Link)`
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
 `;

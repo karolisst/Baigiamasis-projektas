@@ -8,12 +8,14 @@ import {
   StyledForm,
   Error,
   Img,
+  StyledCreateAcc,
 } from "../styles/StyledLogin";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthenticationContext } from "./AuthenticationContext";
 import errorImg from "../assets/error.svg";
+import arrow from "../assets/arrow.svg";
 
 export const Login = () => {
   const { setIsSignedIn } = useContext(AuthenticationContext);
@@ -50,37 +52,38 @@ export const Login = () => {
   };
 
   return (
-    <>
-      <LoginContainer>
-        <MainBox>
-          <StyledHeader>
-            <h2>
-              <b>Login</b>
-            </h2>
-          </StyledHeader>
-          <StyledForm onSubmit={handleOnSubmit}>
-            <StyledInput
-              name="email"
-              onChange={handleOnChange}
-              type="email"
-              placeholder="Email"
-            />
-            <StyledInput
-              name="password"
-              onChange={handleOnChange}
-              type="password"
-              placeholder="*********"
-            />
-            <StyledButton className="btn">Login</StyledButton>
-            {error && (
-              <Error>
-                <Img src={errorImg} alt="logo" />
-                {error}
-              </Error>
-            )}
-          </StyledForm>
-        </MainBox>
-      </LoginContainer>
-    </>
+    <LoginContainer>
+      <MainBox>
+        <StyledHeader>
+          <h2>
+            <b>Login</b>
+          </h2>
+        </StyledHeader>
+        <StyledForm onSubmit={handleOnSubmit}>
+          <StyledInput
+            name="email"
+            onChange={handleOnChange}
+            type="email"
+            placeholder="Email"
+          />
+          <StyledInput
+            name="password"
+            onChange={handleOnChange}
+            type="password"
+            placeholder="*********"
+          />
+          <StyledButton className="btn">Login</StyledButton>
+          {error && (
+            <Error>
+              <Img src={errorImg} alt="logo" />
+              {error}
+            </Error>
+          )}
+          <StyledCreateAcc to="/register">
+            Create Your Account <Img src={arrow} alt="logo" />
+          </StyledCreateAcc>
+        </StyledForm>
+      </MainBox>
+    </LoginContainer>
   );
 };
