@@ -1,3 +1,4 @@
+import { useState, useContext } from "react";
 import {
   MainBox,
   StyledHeader,
@@ -9,11 +10,12 @@ import {
   Img,
 } from "../styles/StyledLogin";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
+import { AuthenticationContext } from "./AuthenticationContext";
 import errorImg from "../assets/error.svg";
 
 export const Register = () => {
+  const { setIsSignedIn } = useContext(AuthenticationContext);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +23,7 @@ export const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const onHandleSubmit = async (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     if (!name || !surname || !email || !password) {
@@ -44,11 +46,26 @@ export const Register = () => {
         setError(`Email is invalid or already taken`);
       } else {
         await axios.post("http://localhost:8000/register", formData);
-        navigate("/login");
+        handleLogin(formData);
       }
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleLogin = (formData) => {
+    axios
+      .post("http://localhost:8000/login", formData)
+      .then((response) => {
+        if (response.data.token) {
+          localStorage.setItem("token", response.data.token);
+          setIsSignedIn(true);
+          navigate("/");
+        } else {
+          setError(response.data.message);
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   const onNameChange = (e) => {
@@ -75,7 +92,7 @@ export const Register = () => {
             <b>Registration Form</b>
           </h2>
         </StyledHeader>
-        <StyledForm onSubmit={onHandleSubmit}>
+        <StyledForm onSubmit={handleOnSubmit}>
           <StyledInput
             name="name"
             type="text"
