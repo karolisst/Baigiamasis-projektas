@@ -21,6 +21,8 @@ import trash from "../assets/trash.svg";
 import edit from "../assets/edit.svg";
 import save from "../assets/save.svg";
 import cancel from "../assets/cancel.svg";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -48,29 +50,39 @@ export const UserTable = () => {
   };
 
   const handleDeleteUser = (userId) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this user?"
-    );
-    if (confirmed) {
-      axios
-        .delete(`http://localhost:8000/users/${userId}`)
-        .then(() => {
-          setDeleteUser(true);
-          toast.info("user deleted successfully", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    confirmAlert({
+      title: "Confirm deletion!",
+      message: "Are you sure you want to delete this user?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            axios
+              .delete(`http://localhost:8000/users/${userId}`)
+              .then(() => {
+                setDeleteUser(true);
+                toast.info("User deleted successfully", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                });
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
   };
 
   const handleEditUser = (user) => {
