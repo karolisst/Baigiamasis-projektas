@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   ButtonElement,
   Error,
@@ -10,10 +12,8 @@ import {
   StyledHeader,
   AddUserContainer,
   AllUserButton,
-  SuccessMessage,
 } from "../styles/StyledNewUser";
 import errorImg from "../assets/error.svg";
-import successImg from "../assets/success.svg";
 
 export const NewUser = () => {
   const [form, setForm] = useState({
@@ -22,7 +22,6 @@ export const NewUser = () => {
     email: "",
     phone_number: "",
   });
-  const [successMessage, setSuccessMessage] = useState("");
   const [isFormValid, setIsFormValid] = useState(true);
 
   const handleOnChange = (e) => {
@@ -56,19 +55,34 @@ export const NewUser = () => {
           phone_number: "",
         });
         setIsFormValid(true);
-        setSuccessMessage("User successfully added");
+        toast.success("User successfully added", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <AddUserContainer>
-      {successMessage && (
-        <SuccessMessage>
-          <Img src={successImg} alt="logo" />
-          {successMessage}
-        </SuccessMessage>
-      )}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <MainBox>
         <StyledHeader>
           <h2>
