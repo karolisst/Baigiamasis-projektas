@@ -6,9 +6,11 @@ export const LoginContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 65vh;
-  width: 60%;
+  border-radius: 30px;
+  width: 50%;
   margin: 0 auto;
+  box-shadow: #70a870a1 0px 0px 20px 10px;
+  margin-top: 100px;
 `;
 
 export const StyledInput = styled.input`
@@ -61,6 +63,7 @@ export const MainBox = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
+  height: 350px;
 `;
 
 export const Error = styled.div`

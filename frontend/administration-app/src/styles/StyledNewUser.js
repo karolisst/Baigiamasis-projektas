@@ -14,6 +14,8 @@ export const MainBox = styled.div`
   flex-direction: column;
   align-items: center;
   width: 40%;
+  box-shadow: #70a870a1 0px 0px 20px 10px;
+  border-radius: 30px;
 `;
 
 export const StyledHeader = styled.div`

@@ -5,6 +5,8 @@ export const TableContainer = styled.table`
   display: flex;
   flex-direction: column;
   width: 70%;
+  box-shadow: #70a870a1 0px 0px 20px 10px;
+  border-radius: 30px;
 `;
 
 export const HeaderWrapper = styled.thead`
@@ -99,7 +101,7 @@ export const UsersSection = styled.div`
 
 export const H1Element = styled.h1`
   color: #7fc67e;
-  margin-bottom: 30px;
+  margin: 40px 0;
 `;
 
 export const NewUserButton = styled(Link)`
