@@ -9,12 +9,15 @@ import {
   Error,
   Img,
   StyledCreateAcc,
+  StyledSideDiv,
+  StyledSideDivImg,
 } from "../styles/StyledLogin";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthenticationContext } from "./AuthenticationContext";
 import errorImg from "../assets/error.svg";
 import arrow from "../assets/arrow.svg";
+import picture from "../assets/picture.svg";
 
 export const Register = () => {
   const { setIsSignedIn } = useContext(AuthenticationContext);
@@ -88,12 +91,15 @@ export const Register = () => {
 
   return (
     <LoginContainer>
+      <StyledHeader>
+        <h2>
+          <b>Registration Form</b>
+        </h2>
+      </StyledHeader>
       <MainBox>
-        <StyledHeader>
-          <h2>
-            <b>Registration Form</b>
-          </h2>
-        </StyledHeader>
+        <StyledSideDiv>
+          <StyledSideDivImg src={picture} alt="picture" />
+        </StyledSideDiv>
         <StyledForm onSubmit={handleOnSubmit}>
           <StyledInput
             name="name"
@@ -128,13 +134,13 @@ export const Register = () => {
           </StyledButton>
           {error && (
             <Error>
-              <Img src={errorImg} alt="logo" />
+              <Img src={errorImg} alt="error" />
               {error}
             </Error>
           )}
           <StyledCreateAcc to="/login">
             Already have an account?<strong>Login</strong>
-            <Img src={arrow} alt="logo" />
+            <Img src={arrow} alt="arrow" />
           </StyledCreateAcc>
         </StyledForm>
       </MainBox>

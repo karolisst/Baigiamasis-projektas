@@ -123,7 +123,7 @@ export const NewUser = () => {
           </ButtonElement>
           {!isFormValid && (
             <Error>
-              <Img src={errorImg} alt="logo" />
+              <Img src={errorImg} alt="error" />
               {errorMessage || "Please fill in all fields"}
             </Error>
           )}

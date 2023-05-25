@@ -214,10 +214,10 @@ export const UserTable = () => {
                   </TdElement>
                   <TdLastElement>
                     <ButtonSection onClick={handleSaveChanges}>
-                      <Img src={save} alt="logo" />
+                      <Img src={save} alt="save" />
                     </ButtonSection>
                     <ButtonSection onClick={handleCancelEdit}>
-                      <Img src={cancel} alt="logo" />
+                      <Img src={cancel} alt="cancel" />
                     </ButtonSection>
                   </TdLastElement>
                 </>
@@ -230,10 +230,10 @@ export const UserTable = () => {
                   <TdElement>{user.phone_number}</TdElement>
                   <TdLastElement>
                     <ButtonSection onClick={() => handleEditUser(user)}>
-                      <Img src={edit} alt="logo" />
+                      <Img src={edit} alt="edit" />
                     </ButtonSection>
                     <ButtonSection onClick={() => handleDeleteUser(user.id)}>
-                      <Img src={trash} alt="logo" />
+                      <Img src={trash} alt="trash" />
                     </ButtonSection>
                   </TdLastElement>
                 </>
