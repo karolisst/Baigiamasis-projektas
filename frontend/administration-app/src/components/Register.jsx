@@ -21,7 +21,7 @@ export const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const onHandleSubmit = (e) => {
+  const onHandleSubmit = async (e) => {
     e.preventDefault();
 
     if (!name || !surname || !email || !password) {
@@ -36,12 +36,19 @@ export const Register = () => {
       password: password,
     };
 
-    axios
-      .post("http://localhost:8000/register", formData)
-      .then((response) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/check-administrators-email/${email}`
+      );
+      if (response.data.exists) {
+        setError(`Email is invalid or already taken`);
+      } else {
+        await axios.post("http://localhost:8000/register", formData);
         navigate("/login");
-      })
-      .catch((err) => console.log(err));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onNameChange = (e) => {

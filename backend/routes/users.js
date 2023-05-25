@@ -42,4 +42,27 @@ router.put("/users/:id", (req, res) => {
   );
 });
 
+router.get("/check-user-email/:email", (req, res) => {
+  const email = req.params.email;
+
+  dbConnection.execute(
+    "SELECT COUNT(*) AS count FROM users WHERE email = ?",
+    [email],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Server error" });
+      }
+
+      const count = result[0].count;
+
+      if (count > 0) {
+        return res.json({ exists: true });
+      } else {
+        return res.json({ exists: false });
+      }
+    }
+  );
+});
+
 module.exports = router;

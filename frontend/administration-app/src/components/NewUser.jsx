@@ -23,6 +23,7 @@ export const NewUser = () => {
     phone_number: "",
   });
   const [isFormValid, setIsFormValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleOnChange = (e) => {
     setForm({
@@ -44,27 +45,39 @@ export const NewUser = () => {
       return;
     }
 
+    // Check if email already exists
     axios
-      .post("http://localhost:8000/users", form)
-      .then((res) => {
-        console.log(res);
-        setForm({
-          name: "",
-          surname: "",
-          email: "",
-          phone_number: "",
-        });
-        setIsFormValid(true);
-        toast.success("User successfully added", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+      .get(`http://localhost:8000/check-user-email/${form.email}`)
+      .then((response) => {
+        if (response.data.exists) {
+          setIsFormValid(false);
+          setErrorMessage("User with this email already exists");
+        } else {
+          axios
+            .post("http://localhost:8000/users", form)
+            .then((res) => {
+              console.log(res);
+              setForm({
+                name: "",
+                surname: "",
+                email: "",
+                phone_number: "",
+              });
+              setIsFormValid(true);
+              setErrorMessage("");
+              toast.success("User successfully added", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              });
+            })
+            .catch((err) => console.log(err));
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -124,7 +137,7 @@ export const NewUser = () => {
           {!isFormValid && (
             <Error>
               <Img src={errorImg} alt="logo" />
-              Please fill in all fields
+              {errorMessage || "Please fill in all fields"}
             </Error>
           )}
         </FormContainer>

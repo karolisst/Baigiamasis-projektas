@@ -23,7 +23,7 @@ const Protected = ({ isLoading, setIsLoading }) => {
           setIsLoading(false);
         }
       });
-  }, []);
+  }, [location.pathname, navigate, setIsLoading, setIsSignedIn]);
 
   if (isLoading) {
     return <Navigate to="/login" />;

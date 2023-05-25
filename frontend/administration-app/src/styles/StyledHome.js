@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HomeContainer = styled.table`
+export const HomeContainer = styled.div`
   margin: 80px;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@ export const HomeContainer = styled.table`
   align-items: center;
 `;
 
-export const ButtonContainer = styled.table`
+export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;

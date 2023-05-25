@@ -24,7 +24,7 @@ dbConnection.query(
       const administratorsTableQuery = `
       CREATE TABLE IF NOT EXISTS administrators (
         id INT NOT NULL AUTO_INCREMENT,
-        email VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL UNIQUE,
         name VARCHAR(100) NOT NULL,
         surname VARCHAR(100) NOT NULL,
         password VARCHAR(155) NOT NULL,
@@ -42,7 +42,7 @@ dbConnection.query(
         id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(100) NOT NULL,
         surname VARCHAR(100) NOT NULL,
-        email VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL UNIQUE,
         phone_number VARCHAR(100) NOT NULL,
         primary key (id)
       )

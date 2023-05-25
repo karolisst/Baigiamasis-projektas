@@ -5,7 +5,6 @@ import {
   HomeContainer,
   H1Element,
 } from "../styles/StyledHome";
-import { UserList } from "./UserList";
 
 export const HomePage = () => {
   return (
