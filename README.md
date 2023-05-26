@@ -1,5 +1,6 @@
 # Programos paleidimas
 
+- Backend ir Frontend(administration-app) inicijuoti komandą - npm i
 - Backend .env faile pridėti mysql prisijungimus
 - Backend ir Frontend(administration-app) paleisti su - npm start
 - Backend Schema ir Tables susikuria pačios, papildomai kurti duomenų bazėje nieko nereikia
